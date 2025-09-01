@@ -9,16 +9,23 @@ def blocking (seq, blocksize):
     i = 0
     blocks = []
 
+    if not isinstance(seq, str):
+        raise TypeError ("Sequence must be a string!")
+    
+    if not isinstance(blocksize, int) or blocksize <= 0:
+        raise ValueError ("The blocksize must be a positive integer!")
+
     while i < len(seq):
         blocks.append(seq[i:i+blocksize])
         i +=blocksize
     
-    print(" ".join(blocks))
+    return " ".join(blocks)
 
 if __name__ == "__main__":
     
     seq = "GCTGAGACTTCCTGGACGGGGGACAGGCTGTGGGGTTTCTCAGATAACTGGGCCCCTGCGCTCAGGAGGCCTTCACCCTCTGCTCTGGGTAAAGTTCATTGGAACAGAAAGAAATGGATTTATCTGCTCTTCGCGTTGAAGAAGTACAAAATGTCATTAATGCTATGCAGAAAATCTTAGAGTGTCCCATCTGTCTGGAGTTGATCAAGGAACCTGTCTCCACAAAGTGTGACCACATATTTTGCAAATTTTGCATGCTGAAACTTCTCAACCAGAAGAAAGGGCCTTCACAGTGTCCTTTATGTAAGAATGATATAACCAAAAGGAGCCTACAAGAAAGTACGAGATTTGAT"
+    
     blocksize = 10
 
-    blocking(seq, blocksize)
+    print(blocking(seq, blocksize))
 
